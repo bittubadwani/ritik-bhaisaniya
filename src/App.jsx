@@ -19,41 +19,30 @@ import {
   ArrowUpRight,
   CheckCircle2,
   Star,
-  Crown,
-  Zap,
-  PlusCircle,
   PackageCheck
 } from 'lucide-react';
 
 // Contact & Social Details
 const STUDIO_NAME = "Ritik Photography";
-const PHOTOGRAPHER_NAME = "Ritik Bhaisrodiya";
+const PHOTOGRAPHER_NAME = "Ritik Bhaisaniya";
 const INSTAGRAM_HANDLE = "@ritik_photography1811";
 const INSTAGRAM_URL = "https://instagram.com/ritik_photography1811";
 const PHONE_NUMBER = "9575677573";
 const WHATSAPP_NUMBER = "919575677573";
 const WHATSAPP_DEFAULT_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20${encodeURIComponent(STUDIO_NAME)},%20I%20would%20like%20to%20inquire%20about%20booking%20a%20shoot!`;
 
-// Project Photos Categorized
+// Project Photos Categorized (19 Photos)
 const GALLERY_PHOTOS = [
   {
     id: 1,
-    url: "/images/DSC_1781.JPG.jpeg",
-    title: "Cinematic Royal Wedding",
+    url: "/images/DSC_2054.JPG.jpeg",
+    title: "Timeless Royal Bridal Story",
     category: "Weddings",
     location: "Heritage Palace",
-    desc: "Capturing grand wedding rituals and emotional moments with luxury aesthetics."
+    desc: "Candid bridal portraiture preserving genuine emotions, royal attire, and timeless aesthetic."
   },
   {
     id: 2,
-    url: "/images/DSC_2054.JPG.jpeg",
-    title: "Timeless Bridal Story",
-    category: "Weddings",
-    location: "Destination Wedding",
-    desc: "Candid portraiture preserving genuine smiles and intricate wedding attire."
-  },
-  {
-    id: 3,
     url: "/images/IMG_2325.JPG.jpeg",
     title: "Golden Hour Romance",
     category: "Pre-Wedding",
@@ -61,7 +50,7 @@ const GALLERY_PHOTOS = [
     desc: "Bespoke pre-wedding portraiture captured under natural golden hour light."
   },
   {
-    id: 4,
+    id: 3,
     url: "/images/IMG_3677.JPG.jpeg",
     title: "Ethnic Ceremony Joy",
     category: "Weddings",
@@ -69,7 +58,7 @@ const GALLERY_PHOTOS = [
     desc: "Authentic celebrations and traditional festive vibes framed perfectly."
   },
   {
-    id: 5,
+    id: 4,
     url: "/images/IMG_5320.JPG.jpeg",
     title: "Atmospheric Pre-Wedding Shoot",
     category: "Pre-Wedding",
@@ -77,7 +66,7 @@ const GALLERY_PHOTOS = [
     desc: "Cinematic depth and artistic storytelling in a breathtaking backdrop."
   },
   {
-    id: 6,
+    id: 5,
     url: "/images/IMG_7352.JPG.jpeg",
     title: "Luxury Fine-Art Portrait",
     category: "Portraits",
@@ -85,7 +74,7 @@ const GALLERY_PHOTOS = [
     desc: "High-fashion lighting setup creating striking, timeless portraiture."
   },
   {
-    id: 7,
+    id: 6,
     url: "/images/IMG_7353.JPG.jpeg",
     title: "Cinematic Couple Gaze",
     category: "Cinematic",
@@ -93,7 +82,7 @@ const GALLERY_PHOTOS = [
     desc: "Framing true intimacy and subtle emotional connection."
   },
   {
-    id: 8,
+    id: 7,
     url: "/images/IMG_7354.JPG.jpeg",
     title: "Traditional Ritual Essence",
     category: "Weddings",
@@ -101,7 +90,7 @@ const GALLERY_PHOTOS = [
     desc: "Preserving sacred rituals and vibrant colors of authentic ceremonies."
   },
   {
-    id: 9,
+    id: 8,
     url: "/images/IMG_7355.JPG.jpeg",
     title: "Elegant Festivity Capture",
     category: "Portraits",
@@ -109,7 +98,7 @@ const GALLERY_PHOTOS = [
     desc: "Crisp detail, vivid tone grading, and flawless focus on key moments."
   },
   {
-    id: 10,
+    id: 9,
     url: "/images/IMG_7356.JPG.jpeg",
     title: "Pre-Wedding Reel Motion",
     category: "Cinematic",
@@ -117,7 +106,7 @@ const GALLERY_PHOTOS = [
     desc: "Frame-by-frame visual poetry tailored for cinematic couple films."
   },
   {
-    id: 11,
+    id: 10,
     url: "/images/IMG_7357.JPG.jpeg",
     title: "Royal Mehendi Vibrance",
     category: "Weddings",
@@ -125,25 +114,89 @@ const GALLERY_PHOTOS = [
     desc: "Joyous laughter, vibrant henna detail, and candid family emotion."
   },
   {
-    id: 12,
+    id: 11,
     url: "/images/IMG_7358.JPG.jpeg",
     title: "Modern Studio Portraiture",
     category: "Portraits",
     location: "Ritik Studio",
     desc: "Clean, elegant, and contemporary portrait photography."
+  },
+  {
+    id: 12,
+    url: "/images/IMG_7361.JPG.jpeg",
+    title: "Royal Mandap Rituals",
+    category: "Weddings",
+    location: "Grand Wedding Mandap",
+    desc: "Sacred fire rituals and royal wedding moments captured with vivid rich detail."
+  },
+  {
+    id: 13,
+    url: "/images/IMG_7362.JPG.jpeg",
+    title: "Cinematic Wedding Highlight",
+    category: "Cinematic",
+    location: "Palace Courtyard",
+    desc: "Dramatic angle and cinematic composition for couple wedding films."
+  },
+  {
+    id: 14,
+    url: "/images/IMG_7363.JPG.jpeg",
+    title: "Candid Emotion & Smiles",
+    category: "Weddings",
+    location: "Wedding Reception",
+    desc: "Spontaneous laughter and heart-warming candid family memories."
+  },
+  {
+    id: 15,
+    url: "/images/IMG_7364.JPG.jpeg",
+    title: "Pre-Wedding Scenic Vista",
+    category: "Pre-Wedding",
+    location: "Heritage Destination",
+    desc: "Breathtaking outdoor background with romantic couple positioning."
+  },
+  {
+    id: 16,
+    url: "/images/IMG_7365.JPG.jpeg",
+    title: "Fine Art Bridal Portrait",
+    category: "Portraits",
+    location: "Studio Setup",
+    desc: "Editorial bridal portraiture emphasizing elegance and jewelry details."
+  },
+  {
+    id: 17,
+    url: "/images/IMG_7366.JPG.jpeg",
+    title: "Haldi Festivity Colors",
+    category: "Weddings",
+    location: "Haldi Ceremony",
+    desc: "Vibrant yellow splashes and energetic family celebration frames."
+  },
+  {
+    id: 18,
+    url: "/images/IMG_7367.JPG.jpeg",
+    title: "Royal Couple Portrait",
+    category: "Cinematic",
+    location: "Royal Heritage Location",
+    desc: "Exquisite couple posing showcasing luxury ethnic attire."
+  },
+  {
+    id: 19,
+    url: "/images/IMG_7368.JPG.jpeg",
+    title: "Sunset Pre-Wedding Bliss",
+    category: "Pre-Wedding",
+    location: "Golden Hour Trail",
+    desc: "Warm tones and natural smiles in a magical sunset setting."
   }
 ];
 
 const HERO_SLIDES = [
   {
-    image: "/images/DSC_1781.JPG.jpeg",
+    image: "/images/DSC_2054.JPG.jpeg",
     tagline: "PREMIUM WEDDING & PORTRAIT STUDIO",
     heading: "Every Photograph Deserves To Feel Like A Memory.",
     subtext: "Specializing in authentic wedding storytelling, cinematic pre-weddings, and luxury portraiture."
   },
   {
-    image: "/images/DSC_2054.JPG.jpeg",
-    tagline: "RITIK BHAISRODIYA PHOTOGRAPHY",
+    image: "/images/IMG_7362.JPG.jpeg",
+    tagline: "RITIK BHAISANIYA PHOTOGRAPHY",
     heading: "Framing Real Emotions & Royal Celebrations.",
     subtext: "Capturing grand moments with unmatched artistic depth, gold-standard lighting, and candid precision."
   },
@@ -152,6 +205,12 @@ const HERO_SLIDES = [
     tagline: "CINEMATIC PRE-WEDDING FILMS",
     heading: "Your Love Story, Visualized Beautifully.",
     subtext: "Bespoke location shoots tailored to bring your romantic journey to life on screen."
+  },
+  {
+    image: "/images/IMG_7367.JPG.jpeg",
+    tagline: "ROYAL WEDDING CINEMATOGRAPHY",
+    heading: "Timeless Elegance & Unrivaled Craftsmanship.",
+    subtext: "Preserving sacred rituals, candid emotions, and royal wedding granduer."
   }
 ];
 
@@ -265,7 +324,7 @@ const REVIEWS = [
     name: "Rahul & Priya Verma",
     event: "Cinematic Pre-Wedding Shoot",
     rating: 5,
-    text: "Working with Ritik Bhaisrodiya was effortless. He made us feel super comfortable in front of the camera and delivered our pre-wedding teaser in record time! The colors and angles were breathtaking."
+    text: "Working with Ritik Bhaisaniya was effortless. He made us feel super comfortable in front of the camera and delivered our pre-wedding teaser in record time! The colors and angles were breathtaking."
   },
   {
     name: "Dr. Saurabh Patel",
@@ -974,7 +1033,7 @@ export default function App() {
           
           <div style={{ textAlign: 'center', marginBottom: '40px' }}>
             <span className="section-subtitle">CURATED PORTFOLIO</span>
-            <h2 className="section-title">Explore Our Gallery</h2>
+            <h2 className="section-title">Explore Our Gallery ({GALLERY_PHOTOS.length} Works)</h2>
             <div className="gold-divider" />
             <p style={{ maxWidth: '600px', margin: '0 auto', color: 'var(--text-secondary)', fontSize: '1.05rem' }}>
               Filter through our showcase of royal weddings, pre-wedding films, and fine-art portraits.

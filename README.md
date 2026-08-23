@@ -6,14 +6,14 @@
 [![Instagram](https://img.shields.io/badge/Instagram-@ritik__photography1811-E4405F?style=for-the-badge&logo=instagram)](https://instagram.com/ritik_photography1811)
 [![WhatsApp](https://img.shields.io/badge/WhatsApp-9575677573-25D366?style=for-the-badge&logo=whatsapp)](https://wa.me/919575677573)
 
-Welcome to the official repository for **Ritik Photography** (by *Ritik Bhaisrodiya*). This is a luxury, state-of-the-art web application designed for high-end wedding storytelling, pre-wedding films, event coverage, and portrait photography.
+Welcome to the official repository for **Ritik Photography** (by *Ritik Bhaisaniya*). This is a luxury, state-of-the-art web application designed for high-end wedding storytelling, pre-wedding films, event coverage, and portrait photography.
 
 ---
 
 ## ✨ Key Features
 
 - 🎥 **Cinematic Hero Showcase**: Fullscreen interactive slider featuring real client photography and editorial tagline overlays.
-- 🎨 **Filterable Portfolio Gallery**: Masonry layout categorized by *Weddings*, *Pre-Wedding*, *Portraits*, and *Cinematic Films*.
+- 🎨 **Filterable Portfolio Gallery**: Masonry layout with 19 photos categorized by *Weddings*, *Pre-Wedding*, *Portraits*, and *Cinematic Films*.
 - 🔍 **Fullscreen Lightbox Modal**: High-resolution image viewer with caption details and direct WhatsApp shoot inquiry shortcuts.
 - 💎 **Transparent Investment Plans**: Interactive pricing cards for Silver, Gold, Premium, and Luxury Wedding Packages + Pre-Wedding Experience.
 - 🛠️ **Custom Add-Ons List**: Pricing for extra Drones, Candid Photography, Traditional Video, LED Screens, and Luxury Albums.
