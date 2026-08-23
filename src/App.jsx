@@ -13,13 +13,16 @@ import {
   Heart, 
   Sparkles, 
   Award, 
-  Users, 
   Film, 
   Maximize2, 
   Send,
   ArrowUpRight,
   CheckCircle2,
-  Star
+  Star,
+  Crown,
+  Zap,
+  PlusCircle,
+  PackageCheck
 } from 'lucide-react';
 
 // Contact & Social Details
@@ -152,35 +155,103 @@ const HERO_SLIDES = [
   }
 ];
 
-const SERVICES = [
+// WEDDING PACKAGES
+const WEDDING_PACKAGES = [
   {
-    icon: Heart,
-    title: "Royal Wedding Photography",
-    description: "Complete end-to-end coverage of your wedding festivities including Baraat, Phere, Reception, and Candid Moments with luxury hardbound photo albums.",
-    features: ["Candid & Traditional Coverage", "High-Resolution Edited Deliverables", "Premium Hardbound Album", "Same-Day Teaser Photos"],
-    badge: "Most Popular"
+    name: "Silver",
+    price: "₹32,000",
+    tag: "BEST FOR BUDGET WEDDINGS",
+    highlight: false,
+    badgeColor: "rgba(255, 255, 255, 0.2)",
+    features: [
+      "Traditional Photography",
+      "40 Sheet Album — 12×36",
+      "Premium Box Cover",
+      "Traditional Videography — 3 Hours",
+      "2 Same-Day Instagram Reels"
+    ]
   },
   {
-    icon: Film,
-    title: "Cinematic Pre-Wedding Films",
-    description: "Bespoke pre-wedding shoots directed with cinematic story concepts, drone cinematography, and high-end color grading.",
-    features: ["Multiple Outfit & Location Changes", "4K Cinematic Teaser & Reel", "Drone Aerial Shots", "Custom Music Selection"],
-    badge: "Trending"
+    name: "Gold",
+    price: "₹52,000",
+    tag: "MOST POPULAR ⭐",
+    highlight: false,
+    badgeColor: "#C9A66B",
+    features: [
+      "Traditional Photography",
+      "50 Sheet Album — 14×40",
+      "Premium Box Cover",
+      "Traditional Videography — 3 Hours",
+      "One Day Candid Photography",
+      "One Day Drone Coverage",
+      "2–3 Cinematic Reels"
+    ]
   },
   {
-    icon: Sparkles,
-    title: "Event & Ritual Coverage",
-    description: "Vibrant coverage for Haldi, Mehendi, Sangeet, Engagement, and Private Family Celebrations with fast turnaround.",
-    features: ["Candid Guest Shots", "Ritual Highlights", "Fast Digital Delivery", "Social Media Ready Edits"],
-    badge: "Vibrant"
+    name: "Premium",
+    price: "₹75,000",
+    tag: "VALUE ❤️",
+    highlight: false,
+    badgeColor: "#E56B6B",
+    features: [
+      "Traditional Photography — Full Event",
+      "Traditional Videography — Full Event",
+      "50 Sheet Luxury Album — 14×40",
+      "Premium Box Cover",
+      "One Day Drone + Candid",
+      "Cinematic Wedding Highlight Film",
+      "4–5 Premium Reels",
+      "Premium Pendrive + Color Grading"
+    ]
   },
   {
-    icon: Camera,
-    title: "Luxury Portrait Sessions",
-    description: "High-fashion, personal branding, maternity, and studio portrait shoots designed to make you look elegant and confident.",
-    features: ["Studio & Outdoor Options", "Professional Lighting Setup", "Retouched High-Res Images", "Styling Guidance"],
-    badge: "Exclusive"
+    name: "Luxury",
+    price: "₹1,10,000",
+    tag: "COMPLETE ROYAL EXPERIENCE 👑",
+    highlight: true,
+    badgeColor: "#D4AF37",
+    features: [
+      "Full Wedding Photography & Videography",
+      "60 Sheet Luxury Album — 14×40",
+      "Premium Box Cover",
+      "One Day Drone + Candid",
+      "Cinematic Highlight + Full Wedding Film",
+      "Bride & Groom Creative Portrait Session",
+      "Haldi / Mehendi Highlights",
+      "5–6 Premium Reels",
+      "Premium Pendrive + Priority Editing",
+      "✨ Complimentary 12×18 Couple Frame"
+    ]
   }
+];
+
+// PRE-WEDDING PACKAGE
+const PRE_WEDDING_PACKAGE = {
+  name: "Pre-Wedding Experience",
+  price: "₹25,000",
+  tagline: "One day. One story. Made cinematic.",
+  features: [
+    "One Day Outdoor Shoot",
+    "Cinematic Teaser Video",
+    "Full Song Video Film",
+    "30+ Professionally Edited Photos",
+    "2–3 Instagram Reels",
+    "Complete Raw Data Delivery"
+  ]
+};
+
+// ADD-ONS LIST
+const ADD_ONS = [
+  { name: "Drone Coverage", price: "₹5,000 / Day" },
+  { name: "Candid Photography", price: "₹8,000 / Day" },
+  { name: "Traditional Video", price: "₹3,500 / Hour" },
+  { name: "Instagram Reel", price: "₹3,000 / Reel" },
+  { name: "LED Screen Setup", price: "₹10,000" },
+  { name: "Premium Pendrive", price: "₹1,500" },
+  { name: "Album 12×36", price: "₹400 / Sheet" },
+  { name: "Album 14×40", price: "₹450 / Sheet" },
+  { name: "Premium Box Cover", price: "₹3,500" },
+  { name: "Normal Album Cover", price: "₹2,000" }
 ];
 
 const REVIEWS = [
@@ -216,7 +287,7 @@ export default function App() {
     name: '',
     phone: '',
     eventDate: '',
-    serviceType: 'Wedding Photography',
+    serviceType: 'Gold Package (₹52,000)',
     location: '',
     message: ''
   });
@@ -252,7 +323,7 @@ export default function App() {
       `*Name:* ${encodeURIComponent(formData.name)}%0A` +
       `*Phone:* ${encodeURIComponent(formData.phone)}%0A` +
       `*Event Date:* ${encodeURIComponent(formData.eventDate || 'TBD')}%0A` +
-      `*Service Required:* ${encodeURIComponent(formData.serviceType)}%0A` +
+      `*Package / Plan Selected:* ${encodeURIComponent(formData.serviceType)}%0A` +
       `*Location:* ${encodeURIComponent(formData.location || 'N/A')}%0A` +
       `*Details:* ${encodeURIComponent(formData.message || 'None')}`;
     
@@ -270,7 +341,7 @@ export default function App() {
         right: 0,
         zIndex: 900,
         transition: 'var(--transition-smooth)',
-        backgroundColor: scrolled ? 'rgba(7, 21, 16, 0.92)' : 'transparent',
+        backgroundColor: scrolled ? 'rgba(7, 21, 16, 0.94)' : 'transparent',
         backdropFilter: scrolled ? 'blur(16px)' : 'none',
         WebkitBackdropFilter: scrolled ? 'blur(16px)' : 'none',
         borderBottom: scrolled ? '1px solid rgba(201, 166, 107, 0.2)' : '1px solid transparent',
@@ -326,7 +397,7 @@ export default function App() {
             <a href="#home" style={{ color: '#FFF', fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: '500' }}>Home</a>
             <a href="#story" style={{ color: '#FFF', fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: '500' }}>Our Story</a>
             <a href="#portfolio" style={{ color: '#FFF', fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: '500' }}>Portfolio</a>
-            <a href="#services" style={{ color: '#FFF', fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: '500' }}>Services</a>
+            <a href="#plans" style={{ color: 'var(--accent-gold)', fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: '600' }}>Pricing Plans</a>
             <a href="#reviews" style={{ color: '#FFF', fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: '500' }}>Reviews</a>
             <a href="#contact" style={{ color: '#FFF', fontSize: '0.85rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: '500' }}>Contact</a>
           </nav>
@@ -394,7 +465,7 @@ export default function App() {
             <a href="#home" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '1rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Home</a>
             <a href="#story" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '1rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Our Story</a>
             <a href="#portfolio" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '1rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Portfolio</a>
-            <a href="#services" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '1rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Services</a>
+            <a href="#plans" onClick={() => setIsMobileMenuOpen(false)} style={{ color: 'var(--accent-gold)', fontSize: '1rem', letterSpacing: '0.15em', textTransform: 'uppercase', fontWeight: '600' }}>Pricing Plans</a>
             <a href="#reviews" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '1rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Reviews</a>
             <a href="#contact" onClick={() => setIsMobileMenuOpen(false)} style={{ color: '#FFF', fontSize: '1rem', letterSpacing: '0.15em', textTransform: 'uppercase' }}>Contact</a>
             
@@ -499,11 +570,11 @@ export default function App() {
           </p>
 
           <div style={{ display: 'flex', gap: '20px', justifyContent: 'center', flexWrap: 'wrap' }}>
-            <a href="#portfolio" className="btn-gold">
-              <Camera size={18} /> View Gallery
+            <a href="#plans" className="btn-gold">
+              <PackageCheck size={18} /> View Packages
             </a>
-            <a href="#contact" className="btn-outline-light">
-              <MessageCircle size={18} /> Book Session
+            <a href="#portfolio" className="btn-outline-light">
+              <Camera size={18} /> View Gallery
             </a>
           </div>
         </div>
@@ -678,6 +749,221 @@ export default function App() {
       </section>
 
 
+      {/* ----------------- PRICING PLANS SECTION ----------------- */}
+      <section id="plans" style={{
+        padding: '120px 24px',
+        backgroundColor: 'var(--brand-green-dark)',
+        color: '#FFFFFF',
+        position: 'relative'
+      }}>
+        <div style={{ maxWidth: '1300px', margin: '0 auto' }}>
+          
+          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
+            <span className="section-subtitle">INVESTMENT & PACKAGES</span>
+            <h2 className="section-title light">Wedding & Pre-Wedding Plans</h2>
+            <div className="gold-divider" />
+            <p style={{ maxWidth: '650px', margin: '0 auto', color: 'rgba(255, 255, 255, 0.75)', fontSize: '1.05rem' }}>
+              Transparent pricing crafted for every celebration — from budget-friendly weddings to complete royal experiences.
+            </p>
+          </div>
+
+          {/* WEDDING PACKAGES GRID */}
+          <div style={{
+            display: 'grid',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gap: '28px',
+            alignItems: 'stretch',
+            marginBottom: '60px'
+          }}>
+            {WEDDING_PACKAGES.map((pkg, idx) => (
+              <div 
+                key={idx}
+                className={pkg.highlight ? "glass-card-dark" : "glass-card-dark"}
+                style={{
+                  padding: '36px 28px',
+                  borderRadius: '20px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  position: 'relative',
+                  border: pkg.highlight ? '2px solid var(--accent-gold)' : '1px solid rgba(201, 166, 107, 0.25)',
+                  backgroundColor: pkg.highlight ? 'rgba(20, 54, 42, 0.95)' : 'rgba(15, 40, 30, 0.75)',
+                  boxShadow: pkg.highlight ? 'var(--shadow-gold)' : 'var(--shadow-sm)',
+                  transform: pkg.highlight ? 'scale(1.02)' : 'none'
+                }}
+              >
+                <div>
+                  {/* Package Tag */}
+                  <span style={{
+                    display: 'inline-block',
+                    fontSize: '0.68rem',
+                    letterSpacing: '0.15em',
+                    fontWeight: '700',
+                    textTransform: 'uppercase',
+                    padding: '6px 14px',
+                    borderRadius: '9999px',
+                    backgroundColor: pkg.badgeColor,
+                    color: pkg.highlight || pkg.name === 'Gold' ? '#0F281E' : '#FFF',
+                    marginBottom: '16px'
+                  }}>
+                    {pkg.tag}
+                  </span>
+
+                  <h3 style={{ fontSize: '2.2rem', color: '#FFF', fontFamily: 'var(--font-serif)', marginBottom: '6px' }}>
+                    {pkg.name}
+                  </h3>
+
+                  <div style={{ display: 'flex', alignItems: 'baseline', gap: '8px', marginBottom: '24px' }}>
+                    <span style={{ fontSize: '2.4rem', fontWeight: '700', color: 'var(--accent-gold)', fontFamily: 'var(--font-serif)' }}>
+                      {pkg.price}
+                    </span>
+                  </div>
+
+                  <div style={{ height: '1px', backgroundColor: 'rgba(255, 255, 255, 0.1)', margin: '20px 0' }} />
+
+                  {/* Feature Bullet Points */}
+                  <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', display: 'flex', flexDirection: 'column', gap: '12px' }}>
+                    {pkg.features.map((feat, fidx) => (
+                      <li key={fidx} style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.88)' }}>
+                        <CheckCircle2 size={16} color="var(--accent-gold)" style={{ flexShrink: 0, marginTop: '3px' }} />
+                        <span>{feat}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <a 
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Ritik!%20I%20want%20to%20book%20the%20*${encodeURIComponent(pkg.name)}%20Package*%20(${encodeURIComponent(pkg.price)}).`}
+                  target="_blank" 
+                  rel="noreferrer"
+                  className={pkg.highlight ? "btn-gold" : "btn-outline-gold"}
+                  style={{ width: '100%', fontSize: '0.8rem' }}
+                >
+                  <MessageCircle size={16} /> Book {pkg.name} Plan
+                </a>
+              </div>
+            ))}
+          </div>
+
+          {/* PRE-WEDDING PACKAGE BANNER */}
+          <div className="glass-card-dark" style={{
+            padding: '48px 36px',
+            borderRadius: '24px',
+            border: '1px solid var(--accent-gold)',
+            marginBottom: '60px',
+            background: 'linear-gradient(135deg, rgba(20, 54, 42, 0.95) 0%, rgba(7, 21, 16, 0.98) 100%)'
+          }}>
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '40px',
+              alignItems: 'center'
+            }}>
+              <div>
+                <span style={{
+                  display: 'inline-block',
+                  fontSize: '0.75rem',
+                  letterSpacing: '0.2em',
+                  fontWeight: '700',
+                  textTransform: 'uppercase',
+                  padding: '6px 16px',
+                  borderRadius: '9999px',
+                  backgroundColor: 'rgba(201, 166, 107, 0.2)',
+                  color: 'var(--accent-gold)',
+                  border: '1px solid var(--accent-gold)',
+                  marginBottom: '16px'
+                }}>
+                  ROMANTIC OUTDOOR SHOOT
+                </span>
+
+                <h3 style={{ fontSize: '2.5rem', color: '#FFF', fontFamily: 'var(--font-serif)', marginBottom: '8px' }}>
+                  {PRE_WEDDING_PACKAGE.name}
+                </h3>
+
+                <p style={{ fontStyle: 'italic', color: 'var(--accent-gold)', fontSize: '1.2rem', marginBottom: '20px' }}>
+                  "{PRE_WEDDING_PACKAGE.tagline}"
+                </p>
+
+                <div style={{ fontSize: '2.8rem', fontWeight: '700', color: '#FFF', fontFamily: 'var(--font-serif)', marginBottom: '24px' }}>
+                  {PRE_WEDDING_PACKAGE.price}
+                </div>
+
+                <a 
+                  href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Ritik!%20I%20want%20to%20book%20the%20*Pre-Wedding%20Experience*%20(₹25,000).`}
+                  target="_blank" 
+                  rel="noreferrer"
+                  className="btn-gold"
+                >
+                  <Camera size={18} /> Book Pre-Wedding Shoot
+                </a>
+              </div>
+
+              {/* Pre-wedding feature checklist */}
+              <div style={{
+                backgroundColor: 'rgba(255, 255, 255, 0.04)',
+                padding: '30px',
+                borderRadius: '16px',
+                border: '1px solid rgba(255, 255, 255, 0.08)'
+              }}>
+                <h4 style={{ fontSize: '1.1rem', color: '#FFF', marginBottom: '16px', textTransform: 'uppercase', letterSpacing: '0.1em' }}>What's Included:</h4>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '14px' }}>
+                  {PRE_WEDDING_PACKAGE.features.map((feat, fidx) => (
+                    <div key={fidx} style={{ display: 'flex', alignItems: 'center', gap: '12px', fontSize: '0.95rem', color: 'rgba(255, 255, 255, 0.9)' }}>
+                      <CheckCircle2 size={18} color="var(--accent-gold)" />
+                      <span>{feat}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          {/* CUSTOM ADD-ONS SECTION */}
+          <div>
+            <div style={{ textAlign: 'center', marginBottom: '36px' }}>
+              <h3 style={{ fontSize: '2rem', color: '#FFF', fontFamily: 'var(--font-serif)' }}>
+                Customize & Add What You Need
+              </h3>
+              <p style={{ color: 'rgba(255, 255, 255, 0.7)', fontSize: '0.95rem' }}>
+                Add extra coverage, drone shots, luxury covers, or LED displays to any package.
+              </p>
+            </div>
+
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))',
+              gap: '20px'
+            }}>
+              {ADD_ONS.map((item, idx) => (
+                <div 
+                  key={idx}
+                  className="glass-card-dark"
+                  style={{
+                    padding: '20px 24px',
+                    borderRadius: '14px',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    justifyContent: 'space-between',
+                    border: '1px solid rgba(201, 166, 107, 0.2)',
+                    transition: 'var(--transition-fast)'
+                  }}
+                >
+                  <span style={{ fontSize: '0.95rem', color: '#FFF', fontWeight: '500', marginBottom: '8px' }}>
+                    {item.name}
+                  </span>
+                  <span style={{ fontSize: '1.2rem', fontWeight: '700', color: 'var(--accent-gold)', fontFamily: 'var(--font-serif)' }}>
+                    {item.price}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </section>
+
+
       {/* ----------------- PORTFOLIO / GALLERY SECTION ----------------- */}
       <section id="portfolio" style={{
         padding: '120px 24px',
@@ -805,109 +1091,6 @@ export default function App() {
                 </div>
               </div>
             ))}
-          </div>
-
-        </div>
-      </section>
-
-
-      {/* ----------------- SERVICES SECTION ----------------- */}
-      <section id="services" style={{
-        padding: '120px 24px',
-        backgroundColor: 'var(--brand-green-dark)',
-        color: '#FFFFFF',
-        position: 'relative'
-      }}>
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          
-          <div style={{ textAlign: 'center', marginBottom: '60px' }}>
-            <span className="section-subtitle">OUR SPECIALTIES</span>
-            <h2 className="section-title light">Bespoke Photography Services</h2>
-            <div className="gold-divider" />
-            <p style={{ maxWidth: '650px', margin: '0 auto', color: 'rgba(255, 255, 255, 0.75)', fontSize: '1.05rem' }}>
-              Tailored visual packages designed for royal weddings, cinematic stories, and memorable celebrations.
-            </p>
-          </div>
-
-          <div style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-            gap: '30px'
-          }}>
-            {SERVICES.map((srv, idx) => {
-              const IconComp = srv.icon;
-              return (
-                <div key={idx} className="glass-card-dark" style={{
-                  padding: '40px 32px',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  transition: 'var(--transition-smooth)',
-                  position: 'relative'
-                }}>
-                  <div>
-                    <div style={{
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'space-between',
-                      marginBottom: '24px'
-                    }}>
-                      <div style={{
-                        width: '56px',
-                        height: '56px',
-                        borderRadius: '14px',
-                        backgroundColor: 'rgba(201, 166, 107, 0.15)',
-                        border: '1px solid var(--accent-gold)',
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center'
-                      }}>
-                        <IconComp size={28} color="var(--accent-gold)" />
-                      </div>
-
-                      <span style={{
-                        fontSize: '0.7rem',
-                        letterSpacing: '0.15em',
-                        textTransform: 'uppercase',
-                        padding: '4px 12px',
-                        borderRadius: '9999px',
-                        border: '1px solid var(--accent-gold)',
-                        color: 'var(--accent-gold)'
-                      }}>
-                        {srv.badge}
-                      </span>
-                    </div>
-
-                    <h3 style={{ fontSize: '1.6rem', color: '#FFF', fontFamily: 'var(--font-serif)', marginBottom: '14px' }}>
-                      {srv.title}
-                    </h3>
-
-                    <p style={{ color: 'rgba(255, 255, 255, 0.75)', fontSize: '0.95rem', marginBottom: '24px', lineHeight: 1.6 }}>
-                      {srv.description}
-                    </p>
-
-                    <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px 0', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-                      {srv.features.map((feat, fidx) => (
-                        <li key={fidx} style={{ display: 'flex', alignItems: 'center', gap: '10px', fontSize: '0.85rem', color: 'rgba(255, 255, 255, 0.85)' }}>
-                          <CheckCircle2 size={16} color="var(--accent-gold)" />
-                          {feat}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <a 
-                    href={`https://wa.me/${WHATSAPP_NUMBER}?text=Hi%20Ritik!%20I'm%20interested%20in%20inquiring%20about%20the%20${encodeURIComponent(srv.title)}%20package.`}
-                    target="_blank" 
-                    rel="noreferrer"
-                    className="btn-outline-gold"
-                    style={{ width: '100%', fontSize: '0.75rem' }}
-                  >
-                    Inquire Package <ArrowUpRight size={16} />
-                  </a>
-                </div>
-              );
-            })}
           </div>
 
         </div>
@@ -1171,7 +1354,7 @@ export default function App() {
 
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '16px' }}>
                   <div>
-                    <label style={{ display: 'block', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: '600', marginBottom: '6px', color: 'var(--text-primary)' }}>Service Type</label>
+                    <label style={{ display: 'block', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: '600', marginBottom: '6px', color: 'var(--text-primary)' }}>Select Plan</label>
                     <select 
                       value={formData.serviceType}
                       onChange={(e) => setFormData({ ...formData, serviceType: e.target.value })}
@@ -1185,10 +1368,12 @@ export default function App() {
                         backgroundColor: 'rgba(255, 255, 255, 0.9)'
                       }}
                     >
-                      <option value="Royal Wedding Photography">Royal Wedding Photography</option>
-                      <option value="Pre-Wedding Cinematic Shoot">Pre-Wedding Cinematic Shoot</option>
-                      <option value="Event & Ritual Coverage">Event & Ritual Coverage</option>
-                      <option value="Luxury Portrait Session">Luxury Portrait Session</option>
+                      <option value="Silver Package (₹32,000)">Silver Package (₹32,000)</option>
+                      <option value="Gold Package (₹52,000)">Gold Package (₹52,000) ⭐</option>
+                      <option value="Premium Package (₹75,000)">Premium Package (₹75,000) ❤️</option>
+                      <option value="Luxury Package (₹1,10,000)">Luxury Package (₹1,10,000) 👑</option>
+                      <option value="Pre-Wedding Experience (₹25,000)">Pre-Wedding Experience (₹25,000)</option>
+                      <option value="Custom Plan with Add-ons">Custom Plan with Add-ons</option>
                     </select>
                   </div>
 
@@ -1213,10 +1398,10 @@ export default function App() {
                 </div>
 
                 <div>
-                  <label style={{ display: 'block', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: '600', marginBottom: '6px', color: 'var(--text-primary)' }}>Additional Details</label>
+                  <label style={{ display: 'block', fontSize: '0.75rem', letterSpacing: '0.1em', textTransform: 'uppercase', fontWeight: '600', marginBottom: '6px', color: 'var(--text-primary)' }}>Additional Details / Add-ons</label>
                   <textarea 
                     rows={3} 
-                    placeholder="Tell us about your event vision, schedule, or specific requirements..."
+                    placeholder="Mention any custom add-ons (e.g. Drone, Extra Reels, LED Screen)..."
                     value={formData.message}
                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                     style={{
